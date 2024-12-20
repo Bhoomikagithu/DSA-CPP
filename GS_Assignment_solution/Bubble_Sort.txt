@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    void recursion(int arr[],int j,int target){
+        if(j==target) return; //break case
+        if(arr[j]>arr[j+1]){
+        //swapping code
+        int temp = arr[j+1];
+        arr[j+1] = arr[j];
+        arr[j] = temp;
+        }
+        recursion(arr,j+1,target);
+    }
+  
+    // Function to sort the array using bubble sort algorithm.
+    void bubbleSort(int arr[], int n) {
+        for(int i = n-1;i>=1;i--){
+            recursion(arr,0,i); 
+        }
+    }
+};

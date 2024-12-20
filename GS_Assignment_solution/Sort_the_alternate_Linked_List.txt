@@ -1,0 +1,65 @@
+class Solution
+{
+public:
+Node* reverse(Node* desc) {
+    Node* curr = desc;
+    Node* prev = nullptr;
+    while (curr != nullptr) {
+        Node* temp = curr;
+        curr = curr->next;
+        temp->next = prev;
+        prev = temp;
+    }
+    return prev;
+}
+
+// Function to sort the list as per the logic in the Java code
+Node* sort(Node* head) {
+    // Set temp1 and head1 to head, temp2 and head2 to head->next
+    Node* temp1 = head;
+    Node* head1 = head;
+    Node* temp2 = head->next;
+    Node* head2 = head->next;
+    bool set = true; // This toggle so first temp1 is set, then temp2
+
+    // Traverse through the list
+    while (head != nullptr) {
+        head = head->next;
+        if (set == true && head != nullptr) {
+            temp1->next = head->next;
+            temp1 = temp1->next;
+        } else if (set == false && head != nullptr) {
+            temp2->next = head->next;
+            temp2 = temp2->next;
+        }
+        set = set == true ? false : true;
+    }
+
+    // Nullify the next pointers for the end of both lists
+    if (temp1 != nullptr) temp1->next = nullptr;
+    if (temp2 != nullptr) temp2->next = nullptr;
+
+    // Reverse the second list
+    head2 = reverse(head2);
+
+    // Find the last node of the first list to connect with the second list
+    Node* curr = head1;
+    while (curr->next != nullptr) {
+        curr = curr->next;
+    }
+    curr->next = head2;
+
+    return head1;
+}
+
+// Function to print the linked list
+void print(Node* asc) {
+    Node* curr = asc;
+    while (curr != nullptr) {
+        cout << curr->data << " ";
+        curr = curr->next;
+    }
+    cout << " end" << endl;
+}
+    
+};

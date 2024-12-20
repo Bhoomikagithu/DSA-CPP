@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {  
+        map<char,bool> mpp;
+        for(auto x:jewels){
+            mpp[x]=true;
+        }
+        int count=0;
+        for(auto x:stones){
+            if(mpp[x]) count++;
+        }  
+        return count;
+    }
+};

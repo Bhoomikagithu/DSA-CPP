@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+#include <vector>
+using namespace std;
+
+void printColumnMajorOrder(const vector<vector<int>>& arr) {
+    int rows = arr.size();
+    int cols = arr[0].size();
+    for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < rows; i++) {
+            cout << arr[i][j] << " ";
+        }
+    }
+    cout << endl;
+}
+
+int main() {
+    int rows, cols;
+    cout << "Enter the number of rows: ";
+    cin >> rows;
+    cout << "Enter the number of columns: ";
+    cin >> cols;
+
+    vector<vector<int>> Arr(rows, vector<int>(cols));
+    cout << "Enter elements of the array:" << endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cin >> Arr[i][j];
+        }
+    }
+    printColumnMajorOrder(Arr);
+}

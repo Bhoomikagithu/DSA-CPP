@@ -1,0 +1,59 @@
+class Solution
+{
+    public:
+    void merge(int arr[], int l, int mid, int r)
+    {
+       int len1= mid-l+1;
+       int len2= r-mid;
+       //make an array
+       int* first= new int[len1];
+       int* second= new int[len2];
+       int start= l;
+       for(auto i= 0; i<len1; i++){
+           first[i]=arr[start++];
+           
+       }
+       start= mid+1;
+       for(int i=0; i<len2; i++){
+           second[i]= arr[start++];
+           
+       }
+       //comapring and merging them in an  array
+       int index1=0;
+       int index2=0;
+       int arrayIndex= l;
+       while(index1<len1 and index2< len2){
+           if(first[index1]< second[index2]){
+               arr[arrayIndex++]= first[index1++];
+               
+           }
+           else{
+               arr[arrayIndex++]= second[index2++];
+               
+           }
+       }
+       while(index1<len1){
+           arr[arrayIndex++]= first[index1++];
+           
+       }
+       while(index2<len2){
+           arr[arrayIndex++]= second[index2++];
+           
+       }
+         
+    }
+
+    public:
+    void mergeSort(int arr[], int l, int r)
+    {
+       if(l<r){
+       int mid= l+(r-l)/2;
+       mergeSort(arr, l, mid);
+       mergeSort(arr, mid+1, r);
+       merge(arr, l, mid, r);
+       }
+       else{
+           return;
+       }
+    }
+};

@@ -1,0 +1,17 @@
+DoublyLinkedListNode* sortedInsert(DoublyLinkedListNode* llist, int data) {
+    DoublyLinkedListNode* a = 0;
+    DoublyLinkedListNode* b = llist;
+    for (; b && b->data < data; a = b, b = b->next) {}
+    auto newNode = new DoublyLinkedListNode(data);
+    if (b != nullptr) {
+        b->prev = newNode;
+        newNode->next = b;
+    }
+    if (a != nullptr) {
+        a->next = newNode;
+        newNode->prev = a;
+    } else {
+        return newNode;
+    }
+    return llist;
+}
